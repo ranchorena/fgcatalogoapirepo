@@ -5,16 +5,16 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 
 # Copiar los archivos del proyecto
-COPY ./CatalogoApi/CatalogoFibergis .
+COPY ./CatalogoApi .
 
 # Restaurar las dependencias
-RUN dotnet restore "CatalogoFibergis.csproj"
+RUN dotnet restore "./CatalogoFibergis/CatalogoFibergis.csproj"
 
 # Compilar la aplicación
-RUN dotnet build "CatalogoFibergis.csproj" -c Release -o /app/build
+RUN dotnet build "./CatalogoFibergis/CatalogoFibergis.csproj" -c Release -o /app/build
 
 # Publicar la aplicación
-RUN dotnet publish "CatalogoFibergis.csproj" -c Release -o /app/publish
+RUN dotnet publish "./CatalogoFibergis/CatalogoFibergis.csproj" -c Release -o /app/publish
 
 # Establecer la imagen base para la aplicación final
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
