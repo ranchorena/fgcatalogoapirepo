@@ -40,7 +40,32 @@ pipeline {
                 }
             }
         }
-
+        stage('Build Docker image') {
+            steps {
+                sshagent(['SSH_Server_135_geouser']) {
+                    sh '''
+                        ssh geouser@192.168.1.135 "
+                            cd /usr/src/app/fibergis_catalogoapi && 
+                            if docker ps -a | grep fgcatalogoapi >/dev/null 2>&1; then docker stop fgcatalogoapi && 
+                            docker rm fgcatalogoapi; fi && 
+                            docker image rm -f fgcatalogoapi:qa || true && 
+                            docker build -t fgcatalogoapi:qa --no-cache /usr/src/app/fibergis_catalogoapi
+                        "
+                    '''             
+                }
+            }
+        } 
+        stage('Run Docker container') {
+            steps {
+                sshagent(['SSH_Server_135_geouser']) {
+                    sh '''
+                        ssh geouser@192.168.1.135 " 
+                            docker run -d -p 5024:5024 --name fgcatalogoapi fgcatalogoapi:qa
+                        "
+                    '''
+                }
+            }
+        }        
     } 
     /*post {
         success {
