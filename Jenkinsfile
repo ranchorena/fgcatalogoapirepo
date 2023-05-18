@@ -27,7 +27,7 @@ pipeline {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
                    //bat 'dotnet publish "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln" --output "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\bin\\Release\\net6.0\\publish"'
-                   bat 'dotnet publish "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln" --output "C:\\Code\\FiberGIS_CatalogoApi\\PublishOutput"'
+                   bat 'dotnet publish "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj" --output "C:\\Code\\FiberGIS_CatalogoApi\\PublishOutput"'
                 }
             }
         }
