@@ -35,7 +35,8 @@ pipeline {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh 'scp C:/Code/FiberGIS_CatalogoApi/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
-                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi && chmod -R 777 ./"'
+                    //sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi && chmod -R 777 ./"'
+                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi/CatalogoApi && rm -r /usr/src/app/fibergis_catalogoapi/CatalogoApi/* && ls -la"'
                     sh 'scp -r C:/Code/FiberGIS_CatalogoApi/CatalogoApi geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
                     sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi/CatalogoApi && rm -rf .vs && rm -rf .git && rm -rf .gitignore && ls -la"'
                 }
