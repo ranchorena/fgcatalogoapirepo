@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 
 # Copiar los archivos del proyecto
-COPY /usr/src/app/fibergis_catalogoapi/CatalogoApi/CatalogoFibergis .
+COPY ./CatalogoApi/CatalogoFibergis .
 
 # Restaurar las dependencias
 RUN dotnet restore "CatalogoFibergis.csproj"
