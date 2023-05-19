@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=build-env /app/publish .
 
 # Exponer el puerto necesario
-EXPOSE 5024
+EXPOSE 44323
 
 # Iniciar la aplicación al ejecutar el contenedor
 ENTRYPOINT ["dotnet", "CatalogoFibergis.dll"]
