@@ -1,5 +1,5 @@
 # Establecer la imagen base
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
 # Establecer el directorio de trabajo
 WORKDIR /app
@@ -17,7 +17,7 @@ RUN dotnet build "./CatalogoFibergis/CatalogoFibergis.csproj" -c Release -o /app
 RUN dotnet publish "./CatalogoFibergis/CatalogoFibergis.csproj" -c Release -o /app/publish
 
 # Establecer la imagen base para la aplicación final
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
 # Establecer el directorio de trabajo de la aplicación final
 WORKDIR /app
