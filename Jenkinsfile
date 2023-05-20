@@ -35,6 +35,7 @@ pipeline {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh 'scp C:/Code/FiberGIS_CatalogoApi/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
+                    sh 'scp C:/Code/FiberGIS_CatalogoApi/web.config geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
                     //sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi && chmod -R 777 ./"'
                     // Eliminar contenido existente en el directorio CatalogoApi
                     sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi/CatalogoApi && rm -rf /usr/src/app/fibergis_catalogoapi/CatalogoApi/* && ls -la"'
@@ -65,7 +66,7 @@ pipeline {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh '''
                         ssh geouser@192.168.1.135 " 
-                            docker run -d -p 5024:5024 --name fgcatalogoapi fgcatalogoapi:qa
+                            docker run -d -p 44323:44323 --name fgcatalogoapi fgcatalogoapi:qa
                         "
                     '''
                 }

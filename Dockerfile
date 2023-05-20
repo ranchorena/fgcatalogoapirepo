@@ -7,6 +7,8 @@ WORKDIR /app
 # Copiar los archivos del proyecto
 COPY ./CatalogoApi .
 
+COPY ./web.config ./CatalogoFibergis
+
 # Restaurar las dependencias
 RUN dotnet restore "./CatalogoFibergis/CatalogoFibergis.csproj"
 
