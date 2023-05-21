@@ -28,6 +28,7 @@ WORKDIR /app
 COPY --from=build-env /app/publish .
 
 # Exponer el puerto necesario
+EXPOSE 80
 EXPOSE 44323
 
 # Iniciar la aplicación al ejecutar el contenedor
