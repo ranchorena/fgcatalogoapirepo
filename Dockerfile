@@ -27,6 +27,9 @@ WORKDIR /app
 # Copiar los archivos publicados desde la etapa anterior
 COPY --from=build-env /app/publish .
 
+ENV ASPNETCORE_URLS=http://*:44323
+ENV ASPNETCORE_ENVIRONMENT=”production”
+
 # Exponer el puerto necesario
 EXPOSE 44323
 
