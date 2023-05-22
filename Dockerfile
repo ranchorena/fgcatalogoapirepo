@@ -26,6 +26,7 @@ WORKDIR /app
 
 # Copiar los archivos publicados desde la etapa anterior
 COPY --from=build-env /app/publish .
+COPY --from=build-env /app/CatalogoApi/CatalogoFibergis/catalogoFibergis.xml .
 
 ENV ASPNETCORE_URLS=http://*:80
 # ENV ASPNETCORE_ENVIRONMENT=”production”
