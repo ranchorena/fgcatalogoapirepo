@@ -27,11 +27,13 @@ WORKDIR /app
 # Copiar los archivos publicados desde la etapa anterior
 COPY --from=build-env /app/publish .
 
-ENV ASPNETCORE_URLS=http://*:44323
-ENV ASPNETCORE_ENVIRONMENT=”production”
+ENV ASPNETCORE_URLS=http://*:80
+# ENV ASPNETCORE_ENVIRONMENT=”production”
+ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Exponer el puerto necesario
-EXPOSE 44323
+# EXPOSE 44323
+EXPOSE 80
 
 # Iniciar la aplicación al ejecutar el contenedor
 ENTRYPOINT ["dotnet", "CatalogoFibergis.dll"]

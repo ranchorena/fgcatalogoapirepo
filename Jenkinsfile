@@ -66,7 +66,7 @@ pipeline {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh '''
                         ssh geouser@192.168.1.135 " 
-                            docker run -d -p 44323:44323 --name fgcatalogoapi fgcatalogoapi:qa
+                            docker run -d -p 44323:80 --name fgcatalogoapi fgcatalogoapi:qa
                         "
                     '''
                 }
