@@ -9,7 +9,7 @@ COPY ./CatalogoApi .
 
 COPY ./web.config ./CatalogoFibergis
 
-COPY ./CatalogoApi/appsettings.json ./CatalogoApi/appsettings.Development.json
+COPY ./CatalogoApi/CatalogoFibergis/appsettings.json ./CatalogoFibergis/appsettings.Development.json
 
 # Restaurar las dependencias
 RUN dotnet restore "./CatalogoFibergis/CatalogoFibergis.csproj"
