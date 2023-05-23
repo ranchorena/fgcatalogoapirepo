@@ -30,14 +30,14 @@ WORKDIR /app
 COPY --from=build-env /app/publish .
 COPY --from=build-env /app/CatalogoFibergis/catalogoFibergis.xml .
 
-ENV ASPNETCORE_URLS=http://*:80;https://*:443
+ENV ASPNETCORE_URLS=http://*:80
 # ENV ASPNETCORE_ENVIRONMENT=”production”
 ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Exponer el puerto necesario
 # EXPOSE 44323
 EXPOSE 80
-EXPOSE 443
+# EXPOSE 443
 
 # Iniciar la aplicación al ejecutar el contenedor
 ENTRYPOINT ["dotnet", "CatalogoFibergis.dll"]
