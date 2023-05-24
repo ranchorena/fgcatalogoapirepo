@@ -73,17 +73,17 @@ pipeline {
             }
         }        
     } 
-    /*post {
+    post {
         success {
-            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\nCommit Id: ${env.LAST_COMMIT_HASH}.\n\nCatalogoWeb\nhttp://192.168.1.135:81",  
-                     subject: 'FiberGIS_CatalogoWeb - Pipeline Exitoso',
+            emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\nUltimo mensaje de commit:\n${env.LAST_COMMIT_MESSAGE}\n\nCommit Id:\n${env.LAST_COMMIT_HASH}.\n\nAPI Catalogo\nhttp://192.168.1.135:44322/swagger/index.html",  
+                     subject: 'FiberGIS_CatalogoApi - Subida Exitosa',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
         failure {
-            emailext body: 'El pipeline de FiberGIS_CatalogoWeb ha fallado.', 
-                     subject: 'FiberGIS_CatalogoWeb - Pipeline Fallido - ERROR',
+            emailext body: 'La subida de FiberGIS_CatalogoApi ha fallado.', 
+                     subject: 'FiberGIS_CatalogoApi - La subida ha Fallado - ERROR',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
-    }*/
+    }
 }
 
