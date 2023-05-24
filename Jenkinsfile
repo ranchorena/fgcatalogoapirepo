@@ -75,18 +75,24 @@ pipeline {
     } 
     post {
         success {
-            emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\nUltimo mensaje de commit:\n${env.LAST_COMMIT_MESSAGE}\n\nCommit Id:\n${env.LAST_COMMIT_HASH}.\n\nAPI Catalogo\nhttp://192.168.1.135:44322/swagger/index.html" +
-                           "\n\nJob Name: ${env.JOB_NAME}" +
-                           "\nBuild: ${env.BUILD_NUMBER}" +
-                           "\nConsole output: ${env.BUILD_URL}",  
+            emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\n" +
+                           "Ultimo mensaje de commit:\n" +
+                           "${env.LAST_COMMIT_MESSAGE}\n\n" +
+                           "Commit Id:\n" +
+                           "${env.LAST_COMMIT_HASH}.\n\n" +
+                           "API Catalogo\n" +
+                           "http://192.168.1.135:44322/swagger/index.html\n\n" +
+                           "Job Name: ${env.JOB_NAME}\n" +
+                           "Build: ${env.BUILD_NUMBER}\n" +
+                           "Console output: ${env.BUILD_URL}",  
                      subject: 'FiberGIS_CatalogoApi - Subida Exitosa',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
         failure {
-            emailext body: "La subida de FiberGIS_CatalogoApi ha fallado." +
-                           "\n\nJob Name: ${env.JOB_NAME}" +
-                           "\nBuild: ${env.BUILD_NUMBER}" +
-                           "\nConsole output: ${env.BUILD_URL}", 
+            emailext body: "La subida de FiberGIS_CatalogoApi ha fallado.\n\n" +
+                           "Job Name: ${env.JOB_NAME}\n" +
+                           "Build: ${env.BUILD_NUMBER}\n" +
+                           "Console output: ${env.BUILD_URL}", 
                      subject: 'FiberGIS_CatalogoApi - La subida ha Fallado - ERROR',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
