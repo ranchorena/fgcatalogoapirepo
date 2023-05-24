@@ -75,7 +75,10 @@ pipeline {
     } 
     post {
         success {
-            emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\nUltimo mensaje de commit:\n${env.LAST_COMMIT_MESSAGE}\n\nCommit Id:\n${env.LAST_COMMIT_HASH}.\n\nAPI Catalogo\nhttp://192.168.1.135:44322/swagger/index.html",  
+            emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\nUltimo mensaje de commit:\n${env.LAST_COMMIT_MESSAGE}\n\nCommit Id:\n${env.LAST_COMMIT_HASH}.\n\nAPI Catalogo\nhttp://192.168.1.135:44322/swagger/index.html" +
+                           "\n\nJob Name: <b>${env.JOB_NAME}</b> <br>" +
+                                  "Build: <b>${env.BUILD_NUMBER}</b> <br>" +
+                                  "<a href=${env.BUILD_URL}>Check Console Output</a>",  
                      subject: 'FiberGIS_CatalogoApi - Subida Exitosa',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
