@@ -40,12 +40,14 @@ pipeline {
                 //         bat 'dotnet sonarscanner end /d:sonar.login="jenkins"'
                 //     }
                 // }
-                def scannerHome = tool 'sonarscanner' // Utiliza la instalación configurada en Global Tool Configurations
-                dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
-                    bat "\"${scannerHome}\\bin\\dotnet-sonarscanner.bat\" begin /k:\"FiberGIS_CatalogoApi\" /d:sonar.login=\"jenkins\" /d:sonar.host.url=\"http://192.168.1.149:9000\" /d:sonar.exclusions=\"**/bin/**/*,**/obj/**/*\" /d:sonar.coverage.exclusions=\"**/Program.cs,**/Migrations/*\""
-                    bat 'dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"'
-                    bat "\"${scannerHome}\\bin\\dotnet-sonarscanner.bat\" end /d:sonar.login=\"jenkins\""
-            }                
+                script {
+                    def scannerHome = tool 'sonarscanner' // Utiliza la instalación configurada en Global Tool Configurations
+                    dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
+                        bat "\"${scannerHome}\\bin\\dotnet-sonarscanner.bat\" begin /k:\"FiberGIS_CatalogoApi\" /d:sonar.login=\"jenkins\" /d:sonar.host.url=\"http://192.168.1.149:9000\" /d:sonar.exclusions=\"**/bin/**/*,**/obj/**/*\" /d:sonar.coverage.exclusions=\"**/Program.cs,**/Migrations/*\""
+                        bat 'dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"'
+                        bat "\"${scannerHome}\\bin\\dotnet-sonarscanner.bat\" end /d:sonar.login=\"jenkins\""
+                    }
+                }                
             }
         }        
         /*stage('Transfer files to remote server') {
