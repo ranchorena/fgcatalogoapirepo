@@ -56,27 +56,13 @@ pipeline {
                     withSonarQubeEnv('sonarqubeserver') {
                         script {
                             def scannerHome = tool 'sonarscannermsbuild'
-                            // bat """
-                            //     "${scannerHome}\\bin\\sonar-scanner.bat" begin /d:sonar.projectKey=FiberGIS_CatalogoApi /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
-
-                            //     dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"
-
-                            //     "${scannerHome}\\bin\\sonar-scanner.bat" end /d:sonar.login="jenkins"
-                            // """
-                            // bat """
-                            //     "${scannerHome}\\bin\\sonar-scanner.bat" begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
-
-                            //     dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"
-
-                            //     "${scannerHome}\\bin\\sonar-scanner.bat" end /d:sonar.login="jenkins"
-                            // """ 
                             bat """
                                 dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
-
+        
                                 dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"
-
+        
                                 dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login="jenkins"
-                            """                                                       
+                            """                                                
                         }
                     }
                 }
@@ -93,7 +79,7 @@ pipeline {
                     // Copiar el directorio CatalogoApi y sus contenidos
                     sh 'scp -r C:/Code/FiberGIS_CatalogoApi/CatalogoApi geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
                     // Eliminar archivos/directorios innecesarios en el directorio CatalogoApi
-                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi/CatalogoApi && rm -rf .vs && rm -rf .git && rm -rf .gitignore && ls -la"'
+                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoapi/CatalogoApi && rm -rf .vs && rm -rf .git && rm -rf .gitignore && rm -rf .sonarqube && ls -la"'
                 }
             }
         }
