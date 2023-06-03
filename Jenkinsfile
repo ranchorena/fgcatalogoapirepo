@@ -3,7 +3,7 @@ pipeline {
     agent any
   
     stages {
-        stage('Checkout') {
+        /*stage('Checkout') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
                     git branch: 'master', url: 'https://x-token-auth:ATCTT3xFfGN0X2nYIHCzAuUDguJWyCZUJMyH1cvmPyUDPxFPLrQaPoMoDOnbbWuj2NUW53xhrnSyVhUCvb_bVNHGXEK5OJIGWOrw1FOmkIMmVncC6BWl5ha0Fp92iw94pwfoLZftNgJyREsY7hRoGWDVDbaQqqNJYvplGLGJQlnYgfcZlo6iVhY=3E2DBEDF@bitbucket.org/geosystems_ar/geocatalogoapi.git'
@@ -30,7 +30,7 @@ pipeline {
                    bat 'dotnet publish "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj" --output "C:\\Code\\FiberGIS_CatalogoApi\\PublishOutput"'
                 }
             }
-        }
+        }*/
         stage('SonarQubeAnalisis') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
