@@ -71,11 +71,11 @@ pipeline {
                             //     "${scannerHome}\\bin\\sonar-scanner.bat" end /d:sonar.login="jenkins"
                             // """ 
                             bat """
-                                dotnet sonarscanner begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
+                                dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
 
                                 dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"
 
-                                dotnet sonarscanner end /d:sonar.login="jenkins"
+                                dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login="jenkins"
                             """                                                       
                         }
                     }
