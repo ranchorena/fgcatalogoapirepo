@@ -31,7 +31,18 @@ pipeline {
                 }
             }
         }
-        stage('Transfer files to remote server') {
+        stage('SonarQubeAnalisis') {
+            steps {
+                dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
+                    withSonarQubeEnv('sonarqube') {
+                        bat 'dotnet sonarscanner begin /k:"FiberGIS_CatalogoApi" /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*"  /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"'
+                        bat 'dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"'
+                        bat 'dotnet sonarscanner end /d:sonar.login="jenkins"'
+                    }
+                }
+            }
+        }        
+        /*stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh 'scp C:/Code/FiberGIS_CatalogoApi/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
@@ -71,7 +82,7 @@ pipeline {
                     '''
                 }
             }
-        }        
+        } */       
     } 
     post {
         success {
