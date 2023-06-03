@@ -37,13 +37,15 @@ pipeline {
                     withSonarQubeEnv('sonarqubeserver') {
                         script {
                             def scannerHome = tool 'sonarscannermsbuild'
-                            bat """
-                                dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000"
-
-                                dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"
-
-                                dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login="jenkins"
-                            """
+                            withSonarQubeEnv(credentialsId: 'sonarqube') {
+                                bat """
+                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000"
+    
+                                    dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"
+    
+                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login="jenkins"
+                                """
+                                }
                         }
                     }
                 }
