@@ -34,7 +34,7 @@ pipeline {
         stage('SonarQubeAnalisis') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi') {
-                    withSonarQubeEnv('sonarqube') {
+                    withSonarQubeEnv('sonarqubeserver') {
                         bat 'dotnet sonarscanner begin /k:"FiberGIS_CatalogoApi" /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*"  /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"'
                         bat 'dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"'
                         bat 'dotnet sonarscanner end /d:sonar.login="jenkins"'
