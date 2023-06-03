@@ -56,13 +56,20 @@ pipeline {
                     withSonarQubeEnv('sonarqubeserver') {
                         script {
                             def scannerHome = tool 'sonarscanner'
+                            // bat """
+                            //     "${scannerHome}\\bin\\sonar-scanner.bat" begin /d:sonar.projectKey=FiberGIS_CatalogoApi /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
+
+                            //     dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"
+
+                            //     "${scannerHome}\\bin\\sonar-scanner.bat" end /d:sonar.login="jenkins"
+                            // """
                             bat """
-                                "${scannerHome}\\bin\\sonar-scanner.bat" begin /d:sonar.projectKey=FiberGIS_CatalogoApi /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
+                                "${scannerHome}\\bin\\sonar-scanner.bat" begin /k:"FiberGIS_CatalogoApi" /d:sonar.sources=. /d:sonar.login="jenkins" /d:sonar.host.url="http://192.168.1.149:9000" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.coverage.exclusions="**/Program.cs,**/Migrations/*"
                                 
                                 dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis.sln"
                                 
                                 "${scannerHome}\\bin\\sonar-scanner.bat" end /d:sonar.login="jenkins"
-                            """
+                            """                            
                         }
                     }
                 }
