@@ -33,7 +33,7 @@ pipeline {
         }*/      
         stage('SonarQube Analysis') {
             steps {
-                dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\CatalogoFibergis') {
+                dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis') {
                     withSonarQubeEnv('sonarqubeserver') {
                         script {
                             def scannerHome = tool 'sonarscannermsbuild'
