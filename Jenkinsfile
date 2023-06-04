@@ -39,11 +39,11 @@ pipeline {
                             def scannerHome = tool 'sonarscannermsbuild'
                             withSonarQubeEnv(credentialsId: 'sonarqube') {
                                 bat """
-                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true /d:sonar.login="jenkins"
+                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.exe begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true /d:sonar.login="jenkins"
 
                                     dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"
 
-                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login="jenkins"
+                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.exe end /d:sonar.login="jenkins"
                                 """
                                 }
                         }
