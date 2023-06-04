@@ -36,7 +36,7 @@ pipeline {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis') {
                     withSonarQubeEnv('sonarqubeserver') {
                         script {
-                            def scannerHome = tool 'sonarscannermsbuild'
+                            def scannerHome = tool 'sonarscannerms'
                             withSonarQubeEnv(credentialsId: 'sonarqube') {
                                 bat """
                                     dotnet ${scannerHome}\\SonarScanner.MSBuild.exe begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true /d:sonar.login="jenkins"
