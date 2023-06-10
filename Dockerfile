@@ -39,8 +39,8 @@ ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 80
 # EXPOSE 443
 
-# Crear la carpeta en el contenedor
-RUN mkdir /app/wwwroot
+# Eliminar la carpeta si existe y luego crearla en el contenedor
+RUN rm -rf /app/wwwroot && mkdir /app/wwwroot
 
 # Agregar el volumen para mapear la carpeta del host al contenedor
 VOLUME /home/geouser/pasaje/wwwroot:/app/wwwroot
