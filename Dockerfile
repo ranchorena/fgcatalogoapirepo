@@ -39,5 +39,11 @@ ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 80
 # EXPOSE 443
 
+# Crear la carpeta en el contenedor
+RUN mkdir /app/wwwroot
+
+# Agregar el volumen para mapear la carpeta del host al contenedor
+VOLUME /home/geouser/pasaje/wwwroot:/app/wwwroot
+
 # Iniciar la aplicación al ejecutar el contenedor
 ENTRYPOINT ["dotnet", "CatalogoFibergis.dll"]
