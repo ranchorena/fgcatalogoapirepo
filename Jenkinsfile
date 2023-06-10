@@ -36,6 +36,27 @@ pipeline {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis') {
                     withSonarQubeEnv('sonarqubeserver') {
                         script {
+                            def scannerHome = tool 'sonarscannermsbuild'
+                            withSonarQubeEnv(credentialsId: 'sonarqube') {
+                                bat """
+                                    ${scannerHome}\\SonarQube.Scanner.MSBuild.exe begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true /d:sonar.login="jenkins"
+
+                                    'MSBuild.exe /t:Rebuild "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"'
+
+                                    ${scannerHome}\\SonarQube.Scanner.MSBuild.exe end /d:sonar.login="jenkins"
+                                """
+                                }
+                        }
+                    }
+                }
+            }
+        }
+        /*
+        stage('SonarQube Analysis') {
+            steps {
+                dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis') {
+                    withSonarQubeEnv('sonarqubeserver') {
+                        script {
                             def scannerHome = tool 'sonarscannerms'
                             withSonarQubeEnv(credentialsId: 'sonarqube') {
                                 bat """
@@ -51,7 +72,7 @@ pipeline {
                 }
             }
         }
-        /*stage('Transfer files to remote server') {
+        stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh 'scp C:/Code/FiberGIS_CatalogoApi/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
