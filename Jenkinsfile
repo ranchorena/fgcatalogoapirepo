@@ -1,5 +1,8 @@
 
 pipeline {
+    environment {
+        msbuild =  "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild\""
+    }
     agent any
   
     stages {
@@ -39,9 +42,9 @@ pipeline {
                             def scannerHome = tool 'sonarscannermsbuild'
                             withSonarQubeEnv(credentialsId: 'sonarqube') {
                                 bat """
-                                    ${scannerHome}\\SonarScanner.MSBuild.exe begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true /d:sonar.login="jenkins"
+                                    ${scannerHome}\\SonarScanner.MSBuild.exe begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true
 
-                                    'MSBuild.exe /t:Rebuild "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"'
+                                    ${msbuild} /t:Rebuild "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"
 
                                     ${scannerHome}\\SonarScanner.MSBuild.exe end /d:sonar.login="jenkins"
                                 """
