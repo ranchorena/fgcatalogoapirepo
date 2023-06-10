@@ -46,7 +46,7 @@ pipeline {
 
                                     ${msbuild} /t:Rebuild "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"
 
-                                    ${scannerHome}\\SonarScanner.MSBuild.exe end /d:sonar.login="jenkins"
+                                    ${scannerHome}\\SonarScanner.MSBuild.exe end
                                 """
                                 }
                         }
