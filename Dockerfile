@@ -43,7 +43,7 @@ EXPOSE 80
 RUN rm -rf /app/wwwroot && mkdir /app/wwwroot
 
 # Agregar el volumen para mapear la carpeta del host al contenedor
-VOLUME /home/geouser/pasaje/wwwroot:/app/wwwroot
+#VOLUME /home/geouser/pasaje/wwwroot:/app/wwwroot
 
 # Iniciar la aplicación al ejecutar el contenedor
 ENTRYPOINT ["dotnet", "CatalogoFibergis.dll"]

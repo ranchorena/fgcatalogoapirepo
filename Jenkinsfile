@@ -89,7 +89,7 @@ pipeline {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh '''
                         ssh geouser@192.168.1.135 " 
-                            docker run -d --restart=always -p 44322:80 --name fgcatalogoapi fgcatalogoapi:qa
+                            docker run -v vol-document:/app/wwwroot -v /home/geouser/pasaje/wwwroot:/app/wwwroot -d --restart=always -p 44322:80 --name fgcatalogoapi fgcatalogoapi:qa
                         "
                     '''
                 }
