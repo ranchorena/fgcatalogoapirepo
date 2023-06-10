@@ -54,27 +54,6 @@ pipeline {
                 }
             }
         }
-        /*
-        stage('SonarQube Analysis') {
-            steps {
-                dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis') {
-                    withSonarQubeEnv('sonarqubeserver') {
-                        script {
-                            def scannerHome = tool 'sonarscannerms'
-                            withSonarQubeEnv(credentialsId: 'sonarqube') {
-                                bat """
-                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:"FiberGIS_CatalogoApi" /d:sonar.verbose=true /d:sonar.login="jenkins"
-
-                                    dotnet build "C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis\\CatalogoFibergis.csproj"
-
-                                    dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login="jenkins"
-                                """
-                                }
-                        }
-                    }
-                }
-            }
-        }
         stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
@@ -115,9 +94,9 @@ pipeline {
                     '''
                 }
             }
-        }*/        
+        }        
     } 
-    /*post {
+    post {
         success {
             emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\n" +
                            "Ultimo mensaje de commit:\n" +
@@ -140,6 +119,6 @@ pipeline {
                      subject: 'FiberGIS_CatalogoApi - La subida ha Fallado - ERROR',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
-    }*/
+    }
 }
 
