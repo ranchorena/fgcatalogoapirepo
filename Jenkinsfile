@@ -31,7 +31,7 @@ pipeline {
                 }
             }
         }      
-        /*stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoApi\\CatalogoApi\\CatalogoFibergis') {
                     withSonarQubeEnv('sonarqubeserver') {
@@ -50,8 +50,8 @@ pipeline {
                     }
                 }
             }
-        }*/
-        stage('Transfer files to remote server') {
+        }
+        /*stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh 'scp C:/Code/FiberGIS_CatalogoApi/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoapi/'
@@ -91,9 +91,9 @@ pipeline {
                     '''
                 }
             }
-        }        
+        }*/        
     } 
-    post {
+    /*post {
         success {
             emailext body: "La subida de FiberGIS_CatalogoApi se ha completado con exito.\n\n" +
                            "Ultimo mensaje de commit:\n" +
@@ -116,6 +116,6 @@ pipeline {
                      subject: 'FiberGIS_CatalogoApi - La subida ha Fallado - ERROR',
                      to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
         }
-    }
+    }*/
 }
 
