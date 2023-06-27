@@ -105,6 +105,7 @@ pipeline {
                            "${env.LAST_COMMIT_HASH}.\n\n" +
                            "API Catalogo\n" +
                            "http://192.168.1.135:44322/swagger/index.html\n\n" +
+                           "https://web.fibergis.com.ar/dev/CatalogoApi/swagger/index.html\n\n" +
                            "Job Name: ${env.JOB_NAME}\n" +
                            "Build: ${env.BUILD_NUMBER}\n" +
                            "Console output: ${env.BUILD_URL}",  
